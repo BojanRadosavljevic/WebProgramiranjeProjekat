@@ -1,0 +1,106 @@
+.osnovniKontejner
+{
+    display: flex;
+    flex-direction: column;
+    border: inset rgb(18, 95, 24);
+    background-color:rgb(18, 95, 24) ;
+    margin: 5px 5px 5px;
+    min-width: 400px;
+    flex-wrap: wrap;
+}
+.nazivniDiv
+{
+    display: flex;
+    justify-content: center;
+    border: inset rgb(76, 132, 196);
+    margin: 5px 5px 5px;
+    background-color:rgb(76, 132, 196) ;
+    font-size: 20px;
+    font-weight: bold;
+    flex-wrap: wrap;
+}
+.gornjiDiv
+{
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1 1 auto;
+    justify-content:space-between;
+    border: inset rgb(207, 58, 212);
+    margin: 5px 5px 5px;
+    background-color:rgb(207, 58, 212);
+    flex-wrap: wrap;
+
+}
+.pozoristeDiv,.predstavaDiv,.glumacDiv,.ulogaDiv
+{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1 1 auto;
+    height: 185px;  
+    border: inset rgb(65, 182, 74);
+    margin: 5px 5px 5px;
+    background-color: rgb(65, 182, 74);   
+}
+.buttonPozoristeDiv,.buttonPredstavaDiv,.buttonglumacDiv,.buttonulogaDiv
+{ 
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  
+    
+}
+.labele
+{
+    font-size: 20px;
+    text-align: center;
+    font-weight: bold;
+    align-items: flex-start;
+}
+.donjiDiv
+{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    border: inset rgb(207, 58, 212);
+    margin: 5px 5px 5px;
+    background-color:rgb(207, 58, 212);
+    
+}
+.formeDiv
+{
+    display:flex;
+    flex-direction: column; 
+    justify-content: space-between;
+    border: inset rgb(138, 182, 19);
+    margin: 5px 5px 5px;
+    background-color: rgb(138, 182, 19);
+}
+.tabeleDiv
+{
+    display:flex;
+    border: inset rgb(138, 182, 19);
+    margin: 5px 5px 5px;
+    background-color: rgb(138, 182, 19);
+}
+.izbrisiPozoristeKlDiv,.izbrisiPredstaveKlDiv,.dupKlDiv,.izbrisiGlumcaKlDiv,
+.vratiGlumceUPredstavamaKlDiv,.vratiPredstaveKlDiv,.vratiUlogeGlumacaKlDiv,
+.dodajGlumcaKlDiv,.dodajPozoristeKlDiv,.dodajPredstavuKlDiv,.dodajUloguKlDiv
+{
+    font-size: 20px;
+    text-align: center;
+    align-items: flex-start;
+}
+.tabela,.headtabele,.bodytabele,tr,th,td
+{
+    border: inset black;
+    font-size: 20px;
+    text-align: center;
+    align-items: flex-start;
+}
+.tabela
+{
+    margin : 1px;
+    border-collapse: collapse;
+}
