@@ -139,5 +139,26 @@ namespace WEBProjekat.Controllers
                 return BadRequest(e.Message);
             }
         }
+        [Route("IzmeniPozoriste/{idpozorista}")]
+        [HttpPut]
+        public async Task<ActionResult> izmeniPozoriste(int idpozorista,[FromBody]Pozoriste p)
+        {
+            try
+            {
+                var pozoriste=await Context.Pozorista.Where(p=>p.ID==idpozorista).FirstOrDefaultAsync();
+                if(pozoriste!=null)
+                {
+                    pozoriste.Ime=p.Ime;
+                    pozoriste.Kapacitet=p.Kapacitet;
+                    await Context.SaveChangesAsync();
+                    return Ok(pozoriste);
+                }
+            else return BadRequest("ne postojece pozoriste");
+            }
+            catch(Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
     }
 }

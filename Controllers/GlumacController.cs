@@ -129,5 +129,28 @@ namespace WEBProjekat.Controllers
                 return BadRequest(e.Message+ e.StackTrace);
             }
         }
+        
+        [Route("IzmeniGlumca/{idglumca}")]
+        [HttpPut]
+        public async Task<ActionResult> izmeniGlumca(int idglumca,[FromBody]Glumac p)
+        {
+            try
+            {
+                var glumac=await Context.Glumci.Where(p=>p.ID==idglumca).FirstOrDefaultAsync();
+                if(glumac!=null)
+                {
+                    glumac.Ime=p.Ime;
+                    glumac.Prezime=p.Prezime;
+                    glumac.Godine=p.Godine;
+                    await Context.SaveChangesAsync();
+                    return Ok(glumac);
+                }
+            else return BadRequest("ne postojece pozoriste");
+            }
+            catch(Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }    
      }
 }

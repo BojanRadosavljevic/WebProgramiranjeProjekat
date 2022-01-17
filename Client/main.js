@@ -53,10 +53,13 @@ function crtajPoGornjemDivu(host,pomhost){
     let DodajPozoristeButton=document.createElement("button");
     DodajPozoristeButton.innerHTML="Dodaj";
 
+    let izmeniPozoristeButton=document.createElement("button");
+    izmeniPozoristeButton.innerHTML="Izmeni";
+
     pozoristeDiv.appendChild(pozoristeLabela);
-    buttonPozoristeDiv.appendChild(obrisiPozoristeButton);
-    buttonPozoristeDiv.appendChild(DodajPozoristeButton);
-    pozoristeDiv.appendChild(buttonPozoristeDiv);
+    pozoristeDiv.appendChild(obrisiPozoristeButton);
+    pozoristeDiv.appendChild(DodajPozoristeButton);
+    pozoristeDiv.appendChild(izmeniPozoristeButton);
     host.appendChild(pozoristeDiv);
     //funkcionalnosti buttona za pozorista
     DodajPozoristeButton.onclick=(async(ev)=>
@@ -70,6 +73,11 @@ function crtajPoGornjemDivu(host,pomhost){
     {
         crtajPoDonjemDivu(pomhost);
         izbrisiPozoristekl(formeDiv,pomhost);
+    })
+    izmeniPozoristeButton.onclick=(async(ev)=>
+    {
+        crtajPoDonjemDivu(pomhost);
+        izmeniPozoristekl(formeDiv,pomhost);
     })
 
      //predstava
@@ -93,12 +101,15 @@ function crtajPoGornjemDivu(host,pomhost){
      let prikaziPredstavuButton=document.createElement("button");
      prikaziPredstavuButton.innerHTML="Prikazi";
 
+     let izmeniPredstavuButton=document.createElement("button");
+     izmeniPredstavuButton.innerHTML="Izmeni";
+
      predstavaDiv.appendChild(predstavaLabela)
-     buttonPredstavaDiv.appendChild(prikaziPredstavuButton);
-     buttonPredstavaDiv.appendChild(obrisiPredstavuButton);
-     buttonPredstavaDiv.appendChild(dodajPredstavuUPozoristeButton);
-     buttonPredstavaDiv.appendChild(DodajPredstavuButton);
-     predstavaDiv.appendChild(buttonPredstavaDiv);
+     predstavaDiv.appendChild(prikaziPredstavuButton);
+     predstavaDiv.appendChild(obrisiPredstavuButton);
+     predstavaDiv.appendChild(dodajPredstavuUPozoristeButton);
+     predstavaDiv.appendChild(DodajPredstavuButton);
+     predstavaDiv.appendChild(izmeniPredstavuButton);
      host.appendChild(predstavaDiv);
      //funkcionalnosti button-a predstava  
      DodajPredstavuButton.onclick=(async(ev)=>
@@ -123,6 +134,11 @@ function crtajPoGornjemDivu(host,pomhost){
         crtajPoDonjemDivu(pomhost);
         prikaziPozoristekl(formeDiv,tabeleDiv,pomhost);
     })
+    izmeniPredstavuButton.onclick=(async(ev)=>
+    {
+        crtajPoDonjemDivu(pomhost);
+        izmeniPredstavukl(formeDiv,pomhost);
+    })
      //glumac
 
      let glumacDiv=document.createElement("div");
@@ -141,11 +157,14 @@ function crtajPoGornjemDivu(host,pomhost){
      let prikaziGlumcaButton=document.createElement("button");
      prikaziGlumcaButton.innerHTML="Prikazi";
 
+     let izmeniGlumcaButton=document.createElement("button");
+     izmeniGlumcaButton.innerHTML="Izmeni";     
+
      glumacDiv.appendChild(glumacLabela)
-     buttonGlumacDiv.appendChild(prikaziGlumcaButton);
-     buttonGlumacDiv.appendChild(obrisiGlumcaButton);
-     buttonGlumacDiv.appendChild(DodajGlumcaButton);
-     glumacDiv.appendChild(buttonGlumacDiv);
+     glumacDiv.appendChild(prikaziGlumcaButton);
+     glumacDiv.appendChild(obrisiGlumcaButton);
+     glumacDiv.appendChild(DodajGlumcaButton);
+     glumacDiv.appendChild(izmeniGlumcaButton);
      host.appendChild(glumacDiv);
      //funkcionalnosti button-a glumac  
      DodajGlumcaButton.onclick=(async(ev)=>
@@ -166,6 +185,11 @@ function crtajPoGornjemDivu(host,pomhost){
         crtajPoDonjemDivu(pomhost);
         glumciUPredstavamaKl(formeDiv,tabeleDiv,pomhost);
      })
+     izmeniGlumcaButton.onclick=(async(ev)=>
+     {
+        crtajPoDonjemDivu(pomhost);
+        izmeniGlumcakl(formeDiv,pomhost);
+     })
      //uloga
 
      let ulogaDiv=document.createElement("div");
@@ -181,9 +205,8 @@ function crtajPoGornjemDivu(host,pomhost){
      prikaziUlogeButton.innerHTML="Prikazi";
      //funkcionalnosti button-a prikazi
      ulogaDiv.appendChild(ulogaLabela)
-     buttonUlogaDiv.appendChild(prikaziUlogeButton);
-     buttonUlogaDiv.appendChild(DodajUloguButton);
-     ulogaDiv.appendChild(buttonUlogaDiv);
+     ulogaDiv.appendChild(prikaziUlogeButton);
+     ulogaDiv.appendChild(DodajUloguButton)
      host.appendChild(ulogaDiv);
      //funkcionalnosti button-a uloga
      DodajUloguButton.onclick=(async(ev)=>
@@ -664,4 +687,235 @@ async function UlogeGlumacaKl(hostl,hostd,ghost)
             
         })
 }
+async function izmeniPozoristekl(host,ghost)
+{
+    let izmeniPozoristeKlDiv=document.createElement("div");
+    izmeniPozoristeKlDiv.innerHTML="Izmeni Pozoriste";
+    izmeniPozoristeKlDiv.className="izmeniPozoristeKlDiv";
+    host.appendChild(izmeniPozoristeKlDiv);
+    
+    let divZaImePozoristaZaVracanje=document.createElement("div");
+    divZaImePozoristaZaVracanje.className="divZaImePozoristaZaVracanje";
+    let labelaZaUnosImenaPozoristaZa = document.createElement("label");
+    labelaZaUnosImenaPozoristaZa.innerHTML = "Ime pozorista: ";
 
+    var lista=[];
+    lista=await api.vratiSvaPozorista();
+    let selectImenaPozoristaZaVracanje=document.createElement("select");
+    let op;
+    lista.forEach(p=>
+        {
+            op=document.createElement("option");
+            op.innerHTML=p.ime;
+            op.value=p.id;
+            selectImenaPozoristaZaVracanje.appendChild(op);
+        })
+    divZaImePozoristaZaVracanje.appendChild(labelaZaUnosImenaPozoristaZa);
+    divZaImePozoristaZaVracanje.appendChild(selectImenaPozoristaZaVracanje);
+    host.appendChild(divZaImePozoristaZaVracanje);
+
+    let divZaImePozorista=document.createElement("div");
+        divZaImePozorista.className="divZaImePozorista";
+        let labelaZaUnosImenaPozorista = document.createElement("label");
+        labelaZaUnosImenaPozorista.innerHTML = "Ime:";
+        let textareaZaUnosImenaPozorista=document.createElement("input");
+        textareaZaUnosImenaPozorista.className="textareaZaUnosImenaPozorista";
+        divZaImePozorista.appendChild(labelaZaUnosImenaPozorista);
+        divZaImePozorista.appendChild(textareaZaUnosImenaPozorista);
+        host.appendChild(divZaImePozorista);
+
+        let divZaKapacitetPozorista=document.createElement("div");
+        divZaKapacitetPozorista.className="divZaKapacitetPozorista";
+        let labelaZaUnosKapacitetaPozorista = document.createElement("label");
+        labelaZaUnosKapacitetaPozorista.innerHTML = "Kapacitet:";
+        let textareaZaUnosKapacitetaPozorista=document.createElement("input");
+        textareaZaUnosKapacitetaPozorista.type="number";
+        textareaZaUnosKapacitetaPozorista.className="textareaZaUnosKapacitetaPozorista";
+        divZaKapacitetPozorista.appendChild(labelaZaUnosKapacitetaPozorista);
+        divZaKapacitetPozorista.appendChild(textareaZaUnosKapacitetaPozorista);
+        host.appendChild(divZaKapacitetPozorista);
+
+        let divZaButtonZaIzvrsavanje=document.createElement("div");
+        divZaButtonZaIzvrsavanje.className="divZaButtonZaIzvrsavanje";
+        let buttonZaButtonZaIzvrsavanjePozorista=document.createElement("button");
+        buttonZaButtonZaIzvrsavanjePozorista.innerHTML="Izvrši";
+        divZaButtonZaIzvrsavanje.appendChild(buttonZaButtonZaIzvrsavanjePozorista);
+        host.appendChild(divZaButtonZaIzvrsavanje);
+        buttonZaButtonZaIzvrsavanjePozorista.onclick=(async(ev)=>
+        {
+            let opcija = divZaImePozoristaZaVracanje.querySelector("select");
+            var vrednost = opcija.options[opcija.selectedIndex].value;
+            var ime=host.querySelector(".textareaZaUnosImenaPozorista").value;
+            var kapacitet=host.querySelector(".textareaZaUnosKapacitetaPozorista").value;
+            if(ime===null||ime===undefined||ime==="")
+            alert(`lose uneseni podaci za ime`);
+            else if(kapacitet===null||kapacitet===undefined||kapacitet===""||kapacitet>100)
+            alert(`lose uneseni podaci za kapacitet`);
+            else
+            {   
+                var poz=new pozoriste(0,ime,kapacitet);
+                var api=new Api();
+                await api.izmeniPozoriste(vrednost,poz);
+                crtajPoDonjemDivu(ghost);  
+            }
+        }) 
+}
+async function izmeniPredstavukl(host,ghost)
+{
+    let izmeniPredstavuKlDiv=document.createElement("div");
+    izmeniPredstavuKlDiv.innerHTML="Izmeni Predstavu";
+    izmeniPredstavuKlDiv.className="izmeniPredstavuKlDiv";
+    host.appendChild(izmeniPredstavuKlDiv);
+    
+    let divZaImePredstaveZaVracanje=document.createElement("div");
+    divZaImePredstaveZaVracanje.className="divZaImePredstaveZaVracanje";
+    let labelaZaUnosImenaPredstaveZa = document.createElement("label");
+    labelaZaUnosImenaPredstaveZa.innerHTML = "Ime predstave: ";
+
+    var lista=[];
+    lista=await api.vratiSvePredstave();
+    let selectImenaPredstaveZaVracanje=document.createElement("select");
+    let op;
+    lista.forEach(p=>
+        {
+            op=document.createElement("option");
+            op.innerHTML=p.ime;
+            op.value=p.id;
+            selectImenaPredstaveZaVracanje.appendChild(op);
+        })
+        divZaImePredstaveZaVracanje.appendChild(labelaZaUnosImenaPredstaveZa);
+        divZaImePredstaveZaVracanje.appendChild(selectImenaPredstaveZaVracanje);
+    host.appendChild(divZaImePredstaveZaVracanje);
+
+    let divZaImePredstave=document.createElement("div");
+    divZaImePredstave.className="divZaImePredstave";
+        let labelaZaUnosImenaPredstave = document.createElement("label");
+        labelaZaUnosImenaPredstave.innerHTML = "Ime:";
+        let textareaZaUnosImenaPredstave=document.createElement("input");
+        textareaZaUnosImenaPredstave.className="textareaZaUnosImenaPredstave";
+        divZaImePredstave.appendChild(labelaZaUnosImenaPredstave);
+        divZaImePredstave.appendChild(textareaZaUnosImenaPredstave);
+        host.appendChild(divZaImePredstave);
+
+        let divZaTrajanjePozorista=document.createElement("div");
+        divZaTrajanjePozorista.className="divZaTrajanjePozorista";
+        let labelaZaUnosTrajanjePozorista = document.createElement("label");
+        labelaZaUnosTrajanjePozorista.innerHTML = "Trajanje:";
+        let textareaZaUnosTrajanjaPozorista=document.createElement("input");
+        textareaZaUnosTrajanjaPozorista.type="number";
+        textareaZaUnosTrajanjaPozorista.className="textareaZaUnosTrajanjaPozorista";
+        divZaTrajanjePozorista.appendChild(labelaZaUnosTrajanjePozorista);
+        divZaTrajanjePozorista.appendChild(textareaZaUnosTrajanjaPozorista);
+        host.appendChild(divZaTrajanjePozorista);
+
+        let divZaButtonZaIzvrsavanje=document.createElement("div");
+        divZaButtonZaIzvrsavanje.className="divZaButtonZaIzvrsavanje";
+        let buttonZaButtonZaIzvrsavanjePredstave=document.createElement("button");
+        buttonZaButtonZaIzvrsavanjePredstave.innerHTML="Izvrši";
+        divZaButtonZaIzvrsavanje.appendChild(buttonZaButtonZaIzvrsavanjePredstave);
+        host.appendChild(divZaButtonZaIzvrsavanje);
+        buttonZaButtonZaIzvrsavanjePredstave.onclick=(async(ev)=>
+        {
+            let opcija = divZaImePredstaveZaVracanje.querySelector("select");
+            var vrednost = opcija.options[opcija.selectedIndex].value;
+            var ime=host.querySelector(".textareaZaUnosImenaPredstave").value;
+            var trajanje=host.querySelector(".textareaZaUnosTrajanjaPozorista").value;
+            if(ime===null||ime===undefined||ime==="")
+            alert(`lose uneseni podaci za ime`);
+            else if(trajanje===null||trajanje===undefined||trajanje===""||trajanje>500)
+            alert(`lose uneseni podaci za kapacitet`);
+            else
+            {   
+                var poz=new predstava(0,ime,trajanje);
+                var api=new Api();
+                await api.izmeniPredstavu(vrednost,poz);
+                crtajPoDonjemDivu(ghost);  
+            }
+        }) 
+}
+async function izmeniGlumcakl(host,ghost)
+{
+    let izmeniGlumcaKlDiv=document.createElement("div");
+    izmeniGlumcaKlDiv.innerHTML="Izmeni Predstavu";
+    izmeniGlumcaKlDiv.className="izmeniGlumcaKlDiv";
+    host.appendChild(izmeniGlumcaKlDiv);
+    
+    let divZaImeGlumcaZaVracanje=document.createElement("div");
+    divZaImeGlumcaZaVracanje.className="divZaImeGlumcaZaVracanje";
+    let labelaZaUnosImenaGlumcaZa = document.createElement("label");
+    labelaZaUnosImenaGlumcaZa.innerHTML = "Ime glumca: ";
+
+    var lista=[];
+    lista=await api.vratiSveGlumce();
+    let selectImenaGlumcaZaVracanje=document.createElement("select");
+    let op;
+    lista.forEach(p=>
+        {
+            op=document.createElement("option");
+            op.innerHTML=p.ime+" "+p.prezime;
+            op.value=p.id;
+            selectImenaGlumcaZaVracanje.appendChild(op);
+        })
+        divZaImeGlumcaZaVracanje.appendChild(labelaZaUnosImenaGlumcaZa);
+        divZaImeGlumcaZaVracanje.appendChild(selectImenaGlumcaZaVracanje);
+    host.appendChild(divZaImeGlumcaZaVracanje);
+
+    let divZaImeGlumca=document.createElement("div");
+    divZaImeGlumca.className="divZaImeGlumca";
+        let labelaZaUnosImenaGlumca = document.createElement("label");
+        labelaZaUnosImenaGlumca.innerHTML = "Ime:";
+        let textareaZaUnosImenaGlumca=document.createElement("input");
+        textareaZaUnosImenaGlumca.className="textareaZaUnosImenaGlumca";
+        divZaImeGlumca.appendChild(labelaZaUnosImenaGlumca);
+        divZaImeGlumca.appendChild(textareaZaUnosImenaGlumca);
+        host.appendChild(divZaImeGlumca);
+
+        let divZaPrezimeGlumca=document.createElement("div");
+        divZaPrezimeGlumca.className="divZaPrezimeGlumca";
+        let labelaZaUnosPrezimenaGlumca = document.createElement("label");
+        labelaZaUnosPrezimenaGlumca.innerHTML = "Prezime:";
+        let textareaZaUnosPrezimenaGlumca=document.createElement("input");
+        textareaZaUnosPrezimenaGlumca.className="textareaZaUnosPrezimenaGlumca";
+        divZaPrezimeGlumca.appendChild(labelaZaUnosPrezimenaGlumca);
+        divZaPrezimeGlumca.appendChild(textareaZaUnosPrezimenaGlumca);
+        host.appendChild(divZaPrezimeGlumca);
+
+        let divZaGodineGlumca=document.createElement("div");
+        divZaGodineGlumca.className="divZaGodineGlumca";
+        let labelaZaUnosGodinaGlumca = document.createElement("label");
+        labelaZaUnosGodinaGlumca.innerHTML = "Godine:";
+        let textareaZaUnosGodinaGlumca=document.createElement("input");
+        textareaZaUnosGodinaGlumca.type="number";
+        textareaZaUnosGodinaGlumca.className="textareaZaUnosGodinaGlumca";
+        divZaGodineGlumca.appendChild(labelaZaUnosGodinaGlumca);
+        divZaGodineGlumca.appendChild(textareaZaUnosGodinaGlumca);
+        host.appendChild(divZaGodineGlumca);
+
+        let divZaButtonZaIzvrsavanje=document.createElement("div");
+        divZaButtonZaIzvrsavanje.className="divZaButtonZaIzvrsavanje";
+        let buttonZaButtonZaIzvrsavanjeGlumca=document.createElement("button");
+        buttonZaButtonZaIzvrsavanjeGlumca.innerHTML="Izvrši";
+        divZaButtonZaIzvrsavanje.appendChild(buttonZaButtonZaIzvrsavanjeGlumca);
+        host.appendChild(divZaButtonZaIzvrsavanje);
+        divZaButtonZaIzvrsavanje.onclick=(async(ev)=>
+        {
+            let opcija = divZaImeGlumcaZaVracanje.querySelector("select");
+            var vrednost = opcija.options[opcija.selectedIndex].value;
+            var ime=host.querySelector(".textareaZaUnosImenaGlumca").value;
+            var prezime=host.querySelector(".textareaZaUnosPrezimenaGlumca").value;
+            var trajanje=host.querySelector(".textareaZaUnosGodinaGlumca").value;
+            if(ime===null||ime===undefined||ime==="")
+            alert(`lose uneseni podaci za ime`);
+            else if (prezime===null||prezime===undefined||prezime==="")
+            alert(`lose uneseni podaci za prezime`);
+            else if(trajanje===null||trajanje===undefined||trajanje===""||trajanje>500)
+            alert(`lose uneseni podaci za kapacitet`);
+            else
+            {   
+                var poz=new glumac(0,ime,prezime,trajanje);
+                var api=new Api();
+                await api.izmeniGlumca(vrednost,poz);
+                crtajPoDonjemDivu(ghost);  
+            }
+        }) 
+}

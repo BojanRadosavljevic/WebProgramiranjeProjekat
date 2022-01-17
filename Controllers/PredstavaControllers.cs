@@ -34,6 +34,27 @@ namespace WEBProjekat.Controllers
                 return BadRequest(e.Message);
             }
         }
+        [Route("IzmeniPredstavu/{idpredstave}")]
+        [HttpPut]
+        public async Task<ActionResult> izmeniPredstavu(int idpredstave,[FromBody]Predstava p)
+        {
+            try
+            {
+                var predstava=await Context.Predstave.Where(p=>p.ID==idpredstave).FirstOrDefaultAsync();
+                if(predstava!=null)
+                {
+                    predstava.Ime=p.Ime;
+                    predstava.Trajanje=p.Trajanje;
+                    await Context.SaveChangesAsync();
+                    return Ok(predstava);
+                }
+            else return BadRequest("ne postojeci predstava");
+            }
+            catch(Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
         [Route("ObrisiPredstavu/{id}")]
         [HttpDelete]
         public async Task<ActionResult> obrisiPredstavu(int id)

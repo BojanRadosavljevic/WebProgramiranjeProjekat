@@ -60,7 +60,46 @@ switch(response.status)
     }
     
 }
-
+async izmeniPozoriste(idpozorista,pozoriste)
+{
+    var idpozoristaa=parseInt(idpozorista);
+    try
+    {
+        let response=await fetch(`https://localhost:5001/Pozoriste/IzmeniPozoriste/${idpozoristaa}`,
+        {
+            headers:
+            {
+                Accept:"application/json",
+                "Content-type":"application/json",
+            },
+            method:"PUT",
+            body: JSON.stringify(pozoriste)
+        });
+        switch(response.status)
+        {
+            case 200:
+                {
+                    alert(`Uspesno promenjeno`);
+                    return true;
+                }
+            case 200:
+                {
+                    alert(`Client error: ${await response.text()}`);
+                    return false;
+                }
+            default: 
+                {
+                    alert(`Server error: ${await response.text()}`);
+                    return false;
+                }
+        }
+    }
+    catch(error)
+    {
+        console.error(error);
+        return null;
+    }
+}
 
 async izbrisiPozoriste(idpozorista)
 { 
@@ -171,6 +210,46 @@ default : {
     return false;
 }
 }
+}
+async izmeniPredstavu(idpredstava,predstava)
+{
+    var idpredstavaa=parseInt(idpredstava);
+    try
+    {
+        let response=await fetch(`https://localhost:5001/Predstava/IzmeniPredstavu/${idpredstavaa}`,
+        {
+            headers:
+            {
+                Accept:"application/json",
+                "Content-type":"application/json",
+            },
+            method:"PUT",
+            body: JSON.stringify(predstava)
+        });
+        switch(response.status)
+        {
+            case 200:
+                {
+                    alert(`Uspesno promenjeno`);
+                    return true;
+                }
+            case 200:
+                {
+                    alert(`Client error: ${await response.text()}`);
+                    return false;
+                }
+            default: 
+                {
+                    alert(`Server error: ${await response.text()}`);
+                    return false;
+                }
+        }
+    }
+    catch(error)
+    {
+        console.error(error);
+        return null;
+    }
 }
 
 //glumac
@@ -296,6 +375,46 @@ async izbrisiGlumca(idglumca)
             alert(`Server error: ${await response.text()}`);
             return false;
         }
+    }
+}
+async izmeniGlumca(idglumca,glumac)
+{
+    var idglumcaa=parseInt(idglumca);
+    try
+    {
+        let response=await fetch(`https://localhost:5001/Glumac/IzmeniGlumca/${idglumcaa}`,
+        {
+            headers:
+            {
+                Accept:"application/json",
+                "Content-type":"application/json",
+            },
+            method:"PUT",
+            body: JSON.stringify(glumac)
+        });
+        switch(response.status)
+        {
+            case 200:
+                {
+                    alert(`Uspesno promenjeno`);
+                    return true;
+                }
+            case 200:
+                {
+                    alert(`Client error: ${await response.text()}`);
+                    return false;
+                }
+            default: 
+                {
+                    alert(`Server error: ${await response.text()}`);
+                    return false;
+                }
+        }
+    }
+    catch(error)
+    {
+        console.error(error);
+        return null;
     }
 }
 

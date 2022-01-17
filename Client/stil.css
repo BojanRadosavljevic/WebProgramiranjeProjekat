@@ -36,19 +36,13 @@
     display:flex;
     flex-direction: column;
     justify-content: space-between;
-    flex-grow: 1 1 auto;
-    height: 185px;  
+    flex-grow: 1 2 auto;
+    height: 200px;  
     border: inset rgb(65, 182, 74);
     margin: 5px 5px 5px;
-    background-color: rgb(65, 182, 74);   
-}
-.buttonPozoristeDiv,.buttonPredstavaDiv,.buttonglumacDiv,.buttonulogaDiv
-{ 
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-  
-    
+    background-color: rgb(65, 182, 74);
+    width: 280px;   
+
 }
 .labele
 {
@@ -76,6 +70,10 @@
     border: inset rgb(138, 182, 19);
     margin: 5px 5px 5px;
     background-color: rgb(138, 182, 19);
+    font-size: 20px;
+    text-align: center;
+    font-weight: bold;
+
 }
 .tabeleDiv
 {
@@ -86,7 +84,8 @@
 }
 .izbrisiPozoristeKlDiv,.izbrisiPredstaveKlDiv,.dupKlDiv,.izbrisiGlumcaKlDiv,
 .vratiGlumceUPredstavamaKlDiv,.vratiPredstaveKlDiv,.vratiUlogeGlumacaKlDiv,
-.dodajGlumcaKlDiv,.dodajPozoristeKlDiv,.dodajPredstavuKlDiv,.dodajUloguKlDiv
+.dodajGlumcaKlDiv,.dodajPozoristeKlDiv,.dodajPredstavuKlDiv,.dodajUloguKlDiv,
+.izmeniPozoristeKlDiv
 {
     font-size: 20px;
     text-align: center;
@@ -95,7 +94,7 @@
 .tabela,.headtabele,.bodytabele,tr,th,td
 {
     border: inset black;
-    font-size: 20px;
+    font-size: 30px;
     text-align: center;
     align-items: flex-start;
 }
@@ -103,4 +102,10 @@
 {
     margin : 1px;
     border-collapse: collapse;
+}
+button
+{
+    font-size: 20px;
+    text-align: center;
+    align-items: flex-start;
 }
