@@ -83,9 +83,7 @@ export class Uloge{
                 
                 let opcija1 = divZaImePredstaveZaUloge.querySelector("select");
                 var vrednost1 = opcija1.options[opcija1.selectedIndex];
-                if(this.imeUloge===null||this.imeUloge===undefined||this.imeUloge==="")
-                alert(`lose uneseni podaci za ime uloge`);
-                else await api.dodajUlogu(vrednost.value,vrednost1.value,this.ime)
+                await api.dodajUlogu(vrednost.value,vrednost1.value,this.ime)
             }) 
         }
     
