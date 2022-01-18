@@ -23,7 +23,7 @@ var response=await fetch(`https://localhost:5001/Pozoriste/Dodaj_pozoriste`,
     });
     switch(response.status){
         case 200: {
-            alert(`${await response.text}`);
+            alert(`Uspesno dodato pozoriste`);
             return true;
         }
         case 400:{
@@ -79,7 +79,7 @@ async izmeniPozoriste(idpozorista,pozoriste)
         {
             case 200:
                 {
-                    alert(`Uspesno promenjeno`);
+                    alert(`Uspesno promenjeno pozoriste`);
                     return true;
                 }
             case 200:
@@ -112,11 +112,10 @@ var response = await fetch(`https://localhost:5001/Pozoriste/Izbrisi_pozoriste/$
     },
     method:"DELETE"
 });
-console.log(response);
 switch(response.status){
 case 200 : {
     if(response.ok)
-    alert(`${response.text}`)
+    alert(`uspesno izbrisano pozoriste`)
     return true;
 }
 case 400 : {
@@ -147,7 +146,7 @@ var response=await fetch(`https://localhost:5001/Predstava/DodajPredstavu`,
 });
 switch(response.status){
     case 200: {
-        alert(`${ response.text}`);
+        alert(`uspesno dodata predstava`);
         return true;
     }
     case 400:{
@@ -198,7 +197,7 @@ var response = await fetch(`https://localhost:5001/Predstava/ObrisiPredstavu/${i
 });
 switch(response.status){
 case 200 : {
-    alert(`${response.text}`)
+    alert(`uspesno izbriasana predstava`)
     return true;
 }
 case 400 : {
@@ -230,7 +229,7 @@ async izmeniPredstavu(idpredstava,predstava)
         {
             case 200:
                 {
-                    alert(`Uspesno promenjeno`);
+                    alert(`Uspesno promenjena predstava`);
                     return true;
                 }
             case 200:
@@ -268,7 +267,7 @@ var response=await fetch(`https://localhost:5001/Glumac/DodajGlumca`,
 });
 switch(response.status){
     case 200: {
-        alert(`${response.text}`);
+        alert(`uspesno dodat glumac`);
         return true;
     }
     case 400:{
@@ -362,7 +361,7 @@ async izbrisiGlumca(idglumca)
     {
         case 200 : 
         {
-            alert(`${response.text}`)
+            alert(`uspesno izbrisan glumac`)
             return true;
         }
         case 400 : 
@@ -396,7 +395,7 @@ async izmeniGlumca(idglumca,glumac)
         {
             case 200:
                 {
-                    alert(`Uspesno promenjeno`);
+                    alert(`Uspesno promenjen glumac`);
                     return true;
                 }
             case 200:
@@ -435,7 +434,7 @@ async dodajUlogu(idglumce,idpredstave,imeuloge)
     });
     switch(response.status){
         case 200: {
-            alert(`${response.text}`);
+            alert(`uspesno dodata uloga glumcu`);
             return true;
         }
         case 400:{
@@ -512,7 +511,7 @@ var response=await fetch(`https://localhost:5001/Pozoriste/DodajPredstavuUPozori
 });
 switch(response.status){
     case 200: {
-        alert(`${response.text}`);
+        alert(`uspesno dodata predstava u pozoriste`);
         return true;
     }
     case 400:{

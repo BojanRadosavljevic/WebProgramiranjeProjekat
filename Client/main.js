@@ -283,7 +283,6 @@ async function  izbrisiPozoristekl (host,ghost)
         {
                       let opcija = divZaImePozoristaZaBrisanje.querySelector("select");
                       var vrednost = opcija.options[opcija.selectedIndex];
-                      console.log(vrednost.value);
                       await api.izbrisiPozoriste(vrednost.value);
                       crtajPoDonjemDivu(ghost);  
         }) 
